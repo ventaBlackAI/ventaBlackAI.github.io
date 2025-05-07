@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MarketMoot - Coming Soon</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7VC11LHNF1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-7VC11LHNF1');
+  </script>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #3b3939;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      font-size: 1.5rem;
+      font-weight: 600;
+      justify-content: center;
+    }
+
+    .time-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .time {
+      font-size: 2.5rem;
+      color: #ffcc00;
+    }
+
+    .label {
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    .notice {
+      margin-top: 2rem;
+      max-width: 600px;
+      color: #ddd;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+    .separator {
+  font-size: 2rem;
+  color: #ccc;
+  align-self: center;
+}
+
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <div class="container">
+    <h1 id="heading">MarketMoot is Launching Soon</h1>
+    <div class="countdown" id="countdown">
+        <div class="time-box">
+          <div class="time" id="days">--</div>
+          <div class="label">Days</div>
+        </div>
+        <div class="separator">:</div>
+        <div class="time-box">
+          <div class="time" id="hours">--</div>
+          <div class="label">Hours</div>
+        </div>
+        <div class="separator">:</div>
+        <div class="time-box">
+          <div class="time" id="minutes">--</div>
+          <div class="label">Minutes</div>
+        </div>
+        <div class="separator">:</div>
+        <div class="time-box">
+          <div class="time" id="seconds">--</div>
+          <div class="label">Seconds</div>
+        </div>
+    </div>
+      
+
+    <p class="notice">
+        Welcome to <strong>MarketMoot</strong> — a digital agora for traders and investors who believe the past holds the keys to smarter market discourse.  
+        <br><br>
+        
+        Join the waitlist to be part of the MarketMoot revolution.
+    </p>
+    <p>
+      <a href="https://www.producthunt.com/posts/marketmoot?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-marketmoot" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=959942&theme=dark&t=1746363313732" alt="MarketMoot - Where&#0032;traders&#0032;dissect&#0032;yesterday&#0032;to&#0032;debate&#0032;tomorrow | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+    </p>
+      
+  </div>
+
+  <!-- Countdown Script -->
+  <script>
+    const launchDate = new Date();
+    launchDate.setDate(launchDate.getDate() + 45);
+    launchDate.setHours(0, 0, 0, 0);
+    const targetTime = launchDate.getTime();
+  
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = targetTime - now;
+  
+      if (diff <= 0) {
+        document.getElementById("days").innerText = "00";
+        document.getElementById("hours").innerText = "00";
+        document.getElementById("minutes").innerText = "00";
+        document.getElementById("seconds").innerText = "00";
+        return;
+      }
+  
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+  
+      document.getElementById("days").innerText = days.toString().padStart(2, "0");
+      document.getElementById("hours").innerText = hours.toString().padStart(2, "0");
+      document.getElementById("minutes").innerText = minutes.toString().padStart(2, "0");
+      document.getElementById("seconds").innerText = seconds.toString().padStart(2, "0");
+    }
+  
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+  
+  
+
+  <!-- GSAP Animations -->
+  <script>
+    gsap.from("#heading", {
+      opacity: 0,
+      y: -40,
+      duration: 1,
+      ease: "power3.out"
+    });
+
+    gsap.from(".countdown", {
+      opacity: 0,
+      scale: 0.8,
+      delay: 0.8,
+      duration: 1,
+      ease: "back.out(1.7)"
+    });
+
+    gsap.to(".time", {
+      repeat: -1,
+      yoyo: true,
+      scale: 1.05,
+      duration: 1.5,
+      ease: "sine.inOut"
+    });
+  </script>
+
+  <!-- Particles.js config -->
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 60 },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.1 },
+        size: { value: 3 },
+        line_linked: {
+          enable: true,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.1,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: false,
+          straight: false,
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+        },
+        modes: {
+          repulse: { distance: 100 },
+          push: { particles_nb: 4 },
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>
